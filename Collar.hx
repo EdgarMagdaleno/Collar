@@ -2,7 +2,7 @@ package ;
 
 class Collar {
 	private var array = new Array();
-	private var index:Int;
+	public var index:Int;
 
 	public function new(a) {
 		array = a;
@@ -29,16 +29,16 @@ class Collar {
 
 	public function nextIndex(?steps:Int) {
 		if ( steps == null ) steps = 1;
-		if ( steps > this.array.length ) steps %= array.length;
-		if ( index - steps < 0 ) index = array.length - steps;
-		else index = index - steps;
+		if ( steps > array.length ) steps %= array.length;
+		if ( index + steps > array.length - 1 ) index += steps - array.length;
+		else index += steps;
 	}
 
 	public function previousIndex(?steps:Int) {
 		if ( steps == null ) steps = 1;
-		if ( steps > this.array.length ) steps %= array.length;
+		if ( steps > array.length ) steps %= array.length;
 		if ( index - steps < 0 ) index = array.length - steps;
-		else index = index - steps;
+		else index -= steps;
 	}
 
 	public function next(?steps:Int, ?moveIndex:Bool) {
@@ -46,7 +46,7 @@ class Collar {
 
 		if ( steps == null ) steps = 1;
 		if ( steps > array.length ) steps %= array.length;
-		if ( index + steps > array.length - 1) n = array[index + steps - array.length];
+		if ( index + steps > array.length - 1 ) n = array[index + steps - array.length];
 		else n = array[index + steps];
 
 		if ( moveIndex ) nextIndex(steps);
@@ -57,7 +57,7 @@ class Collar {
 		var n;
 
 		if ( steps == null ) steps = 1;
-		if ( steps > this.array.length ) steps %= array.length;
+		if ( steps > array.length ) steps %= array.length;
 		if ( index - steps < 0 ) n = array[array.length - steps];
 		else n = array[index - steps];
 
