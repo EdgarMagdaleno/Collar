@@ -1,20 +1,24 @@
 package ;
 
 class Collar {
-	private var array:Array<Dynamic>;
+	private var array = new Array();
 	private var index:Int;
 
-	public function new(array:Array<Dynamic>) {
-		this.array = array;
+	public function new(a) {
+		array = a;
 		index = 0;
 	}
 
-	public function get(index:Int) {
+	public function get() {
+		return array[index];
+	}
+
+	public function getAtIndex(index:Int) {
 		if ( index < 0 || index >= array.length ) throw("Index out of bounds.");
 		return array[index];
 	}
 
-	public function set(n:Dynamic) {
+	public function set(n) {
 		array[index] = n;
 	}
 
@@ -38,7 +42,7 @@ class Collar {
 	}
 
 	public function next(?steps:Int, ?moveIndex:Bool) {
-		var n:Dynamic;
+		var n;
 
 		if ( steps == null ) steps = 1;
 		if ( steps > array.length ) steps %= array.length;
@@ -50,7 +54,7 @@ class Collar {
 	}
 
 	public function previous(?steps:Int, ?moveIndex:Bool) {
-		var n:Dynamic;
+		var n;
 
 		if ( steps == null ) steps = 1;
 		if ( steps > this.array.length ) steps %= array.length;
@@ -61,11 +65,7 @@ class Collar {
 		return n;
 	}
 
-	public function push(n:Dynamic) {
+	public function push(n) {
 		array.push(n);
-	}
-
-	public function remove(n:Dynamic) {
-		array.remove(n);
 	}
 }
