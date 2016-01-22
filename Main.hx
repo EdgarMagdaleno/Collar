@@ -1,17 +1,23 @@
 package ;
 
-import Collar;
+import Array;
 
 class Main {
-	private var collar:Collar;
 	public static function main() {
 		new Main();
 	}
 
 	public function new() {
-		var letras = ['A','B','C','D','E','F'];
-		collar = new Collar(letras);
-		trace(collar.next());		
+		var collar = new Collar<Int>();
+		var array = new Array<Int>();
+
+		collar.push(0);
+		collar.push(1);
+		collar.push(2);
+		collar.push(3);
+		collar.push(4);
+
+		trace(collar.get(1));
 	}
 
 }
