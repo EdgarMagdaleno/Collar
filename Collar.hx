@@ -100,7 +100,6 @@ class Collar<T> {
 
 	/*
 	*	Will cycle the array backwards or forwards, to return an index inside array bounds.
-	*	@param Index 	Integer to transform.
 	*/
 	private function transformIndex(index:Int):Void {
 		if ( Math.abs(index) > array.length - 1 ) index %= array.length;
