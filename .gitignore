@@ -1,3 +1,4 @@
-/Main.n
-/Main.hx
-/build.hxml
+Main.hx
+Main.n
+build.hxml
+.gitignore
