@@ -1,7 +1,5 @@
 package ;
 
-import Array;
-
 class Main {
 	public static function main() {
 		new Main();
@@ -9,15 +7,18 @@ class Main {
 
 	public function new() {
 		var collar = new Collar<Int>();
-		var array = new Array<Int>();
 
-		collar.push(0);
 		collar.push(1);
 		collar.push(2);
 		collar.push(3);
 		collar.push(4);
-
-		trace(collar.get(1));
+		collar.push(5);
+		//length = 5
+		trace("Pointer: " + collar.pointer);
+		for ( i in 0 ... 90 ) {
+			trace(collar.next(true));
+			Sys.sleep(.1);
+		}
 	}
 
 }

@@ -3,69 +3,56 @@ package ;
 import Array;
 
 class Collar<T> {
-	private var array:Array<T>;
-	private var index(default, null):Int;
+	public var array(default, null):Array<T>;
+	public var pointer(default, null):Int;
 
 	public function new():Void {
-		index = 0;
+		pointer = 0;
 		array = new Array<T>();
 	}
 
-	public function push(n:T):Void {
-		array.push(n);
-	}
-
-	public function remove(n:T):Void {
-		array.remove(n);
+	public function push(x:T):Void {
+		array.push(x);
 	}
 
 	public function get(?index:Int):T {
-		if ( index < 0 || index >= array.length ) throw("Index out of bounds.");
-		if ( index == null ) index = this.index;
-
-		return array[index];
+		if ( index == null ) index = pointer;
+		return array[transformIndex(index)];
 	}
 
-	public function set(n):Void {
-		array[index] = n;
+	public function set(?index:Int, x:T):Void {
+		if ( index == null ) index = pointer;
+		array[index] = x;
 	}
 
-	public function setIndex(n:Int):Void {
-		if ( n < 0 || n >= array.length ) throw("Index out of bounds.");
-		index = n;
+	public function setIndex(index:Int):Void {
+		pointer = transformIndex(index);
 	}
 
 	public function nextIndex(?steps:Int = 1):Void {
-		if ( steps > array.length ) steps %= array.length;
-		if ( index + steps > array.length - 1 ) index += steps - array.length;
-		else index += steps;
+		pointer = transformIndex(pointer + steps);
 	}
 
 	public function previousIndex(?steps:Int = 1):Void {
-		if ( steps > array.length ) steps %= array.length;
-		if ( index - steps < 0 ) index = array.length - steps;
-		else index -= steps;
+		pointer = transformIndex(pointer - steps);
 	}
 
 	public function next(?steps:Int = 1, ?moveIndex:Bool):T {
-		var n:T;
-
-		if ( steps > array.length ) steps %= array.length;
-		if ( index + steps > array.length - 1 ) n = array[index + steps - array.length];
-		else n = array[index + steps];
-
+		var x:T = array[transformIndex(pointer + steps)];
 		if ( moveIndex ) nextIndex(steps);
-		return n;
+		return x;
 	}
 
 	public function previous(?steps:Int = 1, ?moveIndex:Bool):T {
-		var n:T;
-
-		if ( steps > array.length ) steps %= array.length;
-		if ( index - steps < 0 ) n = array[array.length - steps];
-		else n = array[index - steps];
-
+		var x:T = array[transformIndex(pointer - steps)];
 		if ( moveIndex ) previousIndex(steps);
-		return n;
+		return x;
+	}
+
+	private function transformIndex(index:Int) {
+		if ( Math.abs(index) > array.length - 1 ) index %= array.length;
+		if ( index < 0 ) return array.length + index;
+		if ( index > array.length - 1 ) return index - array.length;
+		return index;
 	}
 }
