@@ -13,7 +13,8 @@ class Main {
 		collar.push(3);
 		collar.push(4);
 		collar.push(5);
-		//length = 5
+		
+		collar.
 		trace("Pointer: " + collar.pointer);
 		for ( i in 0 ... 90 ) {
 			trace(collar.next(true));
