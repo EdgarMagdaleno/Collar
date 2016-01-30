@@ -1,5 +1,5 @@
-package 
-;
+package ;
+
 import Array;
 
 class Collar<T> {
