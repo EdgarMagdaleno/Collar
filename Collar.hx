@@ -1,5 +1,5 @@
-package ;
-
+package 
+;
 import Array;
 
 class Collar<T> {
@@ -19,9 +19,11 @@ class Collar<T> {
 	/*
 	*	Constructor, initializes both the pointer and array.
 	*/
-	public function new():Void {
+	public function new(?arr:Array<T>):Void {
 		pointer = 0;
-		array = new Array<T>();
+
+		if( arr == null ) array = new Array<T>();
+		else array = new Array<T>();
 	}
 
 
@@ -83,7 +85,7 @@ class Collar<T> {
 	*/
 	public function next(?steps:Int = 1, ?movePointer:Bool):T {
 		var x:T = array[transformIndex(pointer + steps)];
-		if ( moveIndex ) nextIndex(steps);
+		if ( movePointer ) nextIndex(steps);
 		return x;
 	}
 
@@ -94,15 +96,15 @@ class Collar<T> {
 	*/
 	public function previous(?steps:Int = 1, ?movePointer:Bool):T {
 		var x:T = array[transformIndex(pointer - steps)];
-		if ( moveIndex ) previousIndex(steps);
+		if ( movePointer ) previousIndex(steps);
 		return x;
 	}
 
 	/*
 	*	Will cycle the array backwards or forwards, to return an index inside array bounds.
 	*/
-	private function transformIndex(index:Int):Void {
-		if ( Math.abs(index) > array.length - 1 ) index %= array.length;
+	private function transformIndex(index:Int):Int {
+		if ( Math.abs(index) > array.length - 1 && array.length != 0) index %= array.length;
 		if ( index < 0 ) return array.length + index;
 		if ( index > array.length - 1 ) return index - array.length;
 		return index;
