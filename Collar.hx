@@ -15,11 +15,9 @@ class Collar<T> {
 	/*
 	*	Constructor, initializes both the pointer and array.
 	*/
-	public function new(?arr:Array<T>):Void {
+	public function new():Void {
+		array = new Array<T>();
 		pointer = 0;
-
-		if( arr == null ) array = new Array<T>();
-		else array = new Array<T>();
 	}
 
 
