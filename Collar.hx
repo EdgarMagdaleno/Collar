@@ -1,7 +1,3 @@
-package ;
-
-import Array;
-
 class Collar<T> {
 
 	/*
@@ -58,7 +54,7 @@ class Collar<T> {
 	/*
 	*	Sets pointer to index specified, will transform to in-bound if needed.
 	*/
-	public function setIndex(index:Int):Void {
+	public function setPointer(index:Int):Void {
 		pointer = transformIndex(index);
 	}
 
