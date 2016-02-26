@@ -60,7 +60,7 @@ class Collar<T> {
 	/*
 	*	Sets pointer to itself plus parameter steps, will transform to in-bound if needed.
 	*/
-	public function nextIndex(?steps:Int = 1):Void {
+	public function nextPointer(?steps:Int = 1):Void {
 		pointer = transformIndex(pointer + steps);
 	}
 
@@ -68,7 +68,7 @@ class Collar<T> {
 	/*
 	*	Sets pointer to itself minus parameter steps, will transform to in-bound if needed.
 	*/
-	public function previousIndex(?steps:Int = 1):Void {
+	public function previousPointer(?steps:Int = 1):Void {
 		pointer = transformIndex(pointer - steps);
 	}
 
