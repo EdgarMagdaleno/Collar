@@ -77,9 +77,9 @@ class Collar<T> {
 	*	Returns whats in the array at pointer plus number steps specified if none are, it will default to 1, 
 	*	will move the pointer to the return position if specified in parameter movePointer.
 	*/
-	public function next(?steps:Int = 1, ?movePointer:Bool):T {
+	public function next(?steps:Int = 1, ?movePointer:Bool = true):T {
 		var x:T = array[transformIndex(pointer + steps)];
-		if ( movePointer ) nextIndex(steps);
+		if ( movePointer ) nextPointer(steps);
 		return x;
 	}
 
@@ -88,9 +88,9 @@ class Collar<T> {
 	*	Returns whats in the array at pointer minus number steps specified if none are, it will default to 1, 
 	*	will move the pointer to the return position if specified in parameter movePointer.
 	*/
-	public function previous(?steps:Int = 1, ?movePointer:Bool):T {
+	public function previous(?steps:Int = 1, ?movePointer:Bool = true):T {
 		var x:T = array[transformIndex(pointer - steps)];
-		if ( movePointer ) previousIndex(steps);
+		if ( movePointer ) previousPointer(steps);
 		return x;
 	}
 
